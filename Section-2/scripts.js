@@ -59,3 +59,6 @@ khushi['lastName']='Chourey';
 console.log(khushi);
 
 
+//Loops in javascript
+
+// use typeof operator for checking the var type
