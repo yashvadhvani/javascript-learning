@@ -51,13 +51,14 @@ let budgetController = (function () {
             if (data.allItems[type].length > 0)
                 ID = data.allItems[type][data.allItems[type].length - 1].id + 1;
             else
-                ID = 0;function
-            //create nefunction
-            if (type ==function
-                newItemfunctions, val);
-            else
+                ID = 0;
+        
+              // Create new item based on 'inc' or 'exp' type
+            if (type === 'exp') {
+                newItem = new Expense(ID, des, val);
+            } else if (type === 'inc') {
                 newItem = new Income(ID, des, val);
-            //push it into the data structure
+            }//push it into the data structure
             data.allItems[type].push(newItem);
 
             //return the new element
@@ -235,10 +236,11 @@ let UIController = (function () {
         },
         changedType: () => {
             let fields =document.querySelectorAll(DOMstrings.inputType+","+DOMstrings.input_desr+","+DOMstrings.input_val);
+            console.log(fields);
             nodeListForEach(fields,function(cur){
                 cur.classList.toggle('red-focus');
             });
-
+            document.querySelector(DOMstrings.input_btn).classList.toggle('red');
         },
         getDOMstrings: () => {
             return DOMstrings;
@@ -259,7 +261,7 @@ let AppController = (function (budgetController, UIController) {
         });
 
         document.querySelector(DOM.container).addEventListener('click', ctrlDeleteItem);
-        document.querySelector(DOM.inputType).addEventListener('change',UIController.changedType());
+        document.querySelector(DOM.inputType).addEventListener('change',UIController.changedType);
     }
 
     let updateBudget = () => {
