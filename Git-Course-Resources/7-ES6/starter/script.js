@@ -184,7 +184,7 @@ for(const cur of boxesArr6){
     cur.style.backgroundColor ='dodgerBlue'
 }*/
 
-let ages =[12, 17, 8, 21, 14, 11];
+/*let ages =[12, 17, 8, 21, 14, 11];
 
 console.log(ages.findIndex(cur => cur>=18));
 console.log(ages.find(cur => cur>=18));
@@ -216,4 +216,34 @@ function isFullAges6(...years){
     console.log(years);
 }
 
-isFullAges6(1990,1999,1965)
+isFullAges6(1990,1999,1965)*/
+
+
+//Maps
+
+const question =new Map();
+question.set('question','Latest Javascript Version');
+question.set(1,'ES5');
+question.set(2,'ES6');
+question.set(3,'ES7');
+question.set(4,'ES8');
+question.set('correct',3);
+question.set(true,'Correct Answer');
+question.set(false,'Wrong Answer')
+
+console.log(question.get('question'));
+//if(question.has(4))
+  //  question.delete(4);
+
+// question.forEach((value,key)=> console.log(`This is ${key} and it's set to ${value}`)
+// )
+for(let [key,value] of question.entries()){
+    // console.log(`This is ${key} and it's set to ${value}`);
+    if(typeof(key)==='number'){
+        console.log(`Option ${key} : ${value}`);
+    }
+}
+const ans=parseInt(prompt('Write the Correct answer :'));
+console.log(question.get(question.get('correct')===ans));
+// To remove all elements
+// question.clear();
