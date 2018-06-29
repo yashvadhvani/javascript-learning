@@ -687,13 +687,7 @@ const allStreets = [new Street('Ocean Avenue', 1999, 1.1, 4),
                    new Street('Sunset Boulevard', 1982, 2.5, 5)];
 
 
-function calc(arr) {
-    
-    const sum = arr.reduce((prev, cur, index) => prev + cur, 0);
-    
-    return [sum, sum / arr.length];
-    
-}
+
 
 
 function reportParks(p) {
@@ -724,7 +718,7 @@ function reportStreets(s) {
     console.log(`Our ${s.length} streets have a total length of ${totalLength} km, with an average of ${avgLength} km.`);
     
     // CLassify sizes
-    s.forEach(el => el.classifyStreet());
+    s.forEach(el => el. ());
 }
 
 reportParks(allParks);

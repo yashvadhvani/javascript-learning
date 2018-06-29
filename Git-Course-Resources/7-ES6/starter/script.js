@@ -221,7 +221,7 @@ isFullAges6(1990,1999,1965)*/
 
 //Maps
 
-const question =new Map();
+/*const question =new Map();
 question.set('question','Latest Javascript Version');
 question.set(1,'ES5');
 question.set(2,'ES6');
@@ -246,4 +246,17 @@ for(let [key,value] of question.entries()){
 const ans=parseInt(prompt('Write the Correct answer :'));
 console.log(question.get(question.get('correct')===ans));
 // To remove all elements
-// question.clear();
+// question.clear();*/
+
+//Classes
+
+class Person6{
+    constructor (name,yearOfBirth,job){
+        this.name=name;
+        this.yearOfBirth=yearOfBirth;
+        this.job=job;
+    }
+    calculateAge(){
+        
+    }
+}
