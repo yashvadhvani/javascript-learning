@@ -5,41 +5,61 @@
 
 
 import * as searchView from './Views/searchView';
-import {elements} from './Views/base';
+import {
+    elements,
+    renderLoader,
+    clearLoader
+} from './Views/base';
 import Search from './models/Search';
+import Recipe from './models/Recipe';
 /** Global State of the app
  * - Search object
  * - Current Recipe object
  * - Shopping list object
  * - Liked recipes
  */
-const state ={};
+const state = {};
 
 
 
-const controlSearch= async () => {
+const controlSearch = async () => {
     // 1) Get Query from View
     const query = searchView.getInput();
-    if(query){
+    if (query) {
         //2) New Search object and add to state
-        state.search=new Search(query);
+        state.search = new Search(query);
         //3) Prepare UI for results
         searchView.clearInput();
         searchView.clearResults();
+        renderLoader(elements.searchRes);
         //4) Search for recipes
-        
+
         await state.search.getResults();
 
         //5) Render result to UI
+        clearLoader();
         searchView.renderResults(state.search.recipes)
 
     }
 }
 
-elements.searchButton.addEventListener('submit',e => {
+elements.searchButton.addEventListener('submit', e => {
     e.preventDefault();
     controlSearch();
+});
+
+elements.searchResPages.addEventListener('click', e => {
+    const btn = e.target.closest('.btn-inline');
+    if (btn) {
+        const goToPage = parseInt(btn.dataset.goto, 10);
+        searchView.clearResults();
+        searchView.renderResults(state.search.recipes,goToPage)
+    }
 })
 
+const r =new Recipe(46956);
+console.log(r);
+r.getRecipe();
+// console.log(r);
 // const search =new Search('Pizza');
 // search.getResults();
