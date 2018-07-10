@@ -8,10 +8,17 @@ export const clearInput = () => {
 };
 export const clearResults = () => {
     elements.searchResultList.innerHTML = '';
-    elements.searchResPages.innerHTML='';
+    elements.searchResPages.innerHTML = '';
 }
 
-const limitRecipeTitle = (title, limit = 17) => {
+export const highLightSelected = id => {
+    const resultArr = Array.from(document.querySelectorAll('.results__link'));
+    resultArr.forEach( el => {
+        el.classList.remove('results__link--active');
+    });
+    document.querySelector(`.results__link[href*='#${id}'`).classList.add('results__link--active');
+};
+export const limitRecipeTitle = (title, limit = 17) => {
     const newTitle = [];
     if (title.length > limit) {
         title.split(' ').reduce((acc, curr) => {
@@ -55,16 +62,16 @@ const renderButtons = (page, numResults, resPerPage) => {
     let button;
     if (page === 1) {
         //Next Page Button only
-        button= createButton(page,'next');
+        button = createButton(page, 'next');
     } else if (page === pages) {
         //Prev Page Button Only
-        button= createButton(page,'prev');
+        button = createButton(page, 'prev');
     } else {
         //Both Buttons
-        button= `${createButton(page,'prev')}
+        button = `${createButton(page,'prev')}
         ${createButton(page,'next')}`;
     }
-    elements.searchResPages.insertAdjacentHTML('afterbegin',button);
+    elements.searchResPages.insertAdjacentHTML('afterbegin', button);
 }
 
 export const renderResults = (recipes, page = 1, resPerPage = 10) => {
@@ -74,5 +81,5 @@ export const renderResults = (recipes, page = 1, resPerPage = 10) => {
     recipes.slice(start, end).forEach(renderRecipes);
 
     //render Pagination Buttons
-    renderButtons(page,recipes.length,resPerPage);
+    renderButtons(page, recipes.length, resPerPage);
 }
